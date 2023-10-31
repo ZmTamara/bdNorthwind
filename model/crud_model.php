@@ -1,6 +1,5 @@
 <?php 
 class crud_model {
-    //CUSTOMERS
     public function mostrarCustomers(){
         include 'connection.php';
         $conexion = new connection(); 
@@ -12,34 +11,34 @@ class crud_model {
         return $result;
     }
 
-    public function eliminarCustomers($nombreUsuario, $contrasena){
+    public function mostrarEmployees(){
         include 'connection.php';
         $conexion = new connection(); 
         $conn=$conexion->conexion();
 
-        $sql = "SELECT * FROM administradores WHERE  user_adm= '$nombreUsuario' AND pass_adm = '$contrasena'";
+        $sql = "CALL selec_employees()";
+        $result1 = $conn->query($sql);
+        
+        return $result1;
+    }
+
+    public function mostrarProducts(){
+        include 'connection.php';
+        $conexion = new connection(); 
+        $conn=$conexion->conexion();
+
+        $sql = "CALL selec_products()";
         $result = $conn->query($sql);
         
         return $result;
     }
 
-    public function editarCustomers($nombreUsuario, $contrasena){
+    public function mostrarOrders(){
         include 'connection.php';
         $conexion = new connection(); 
         $conn=$conexion->conexion();
 
-        $sql = "SELECT * FROM administradores WHERE  user_adm= '$nombreUsuario' AND pass_adm = '$contrasena'";
-        $result = $conn->query($sql);
-        
-        return $result;
-    }
-
-    public function crearCustomers($nombreUsuario, $contrasena){
-        include 'connection.php';
-        $conexion = new connection(); 
-        $conn=$conexion->conexion();
-
-        $sql = "SELECT * FROM administradores WHERE  user_adm= '$nombreUsuario' AND pass_adm = '$contrasena'";
+        $sql = "CALL selec_order()";
         $result = $conn->query($sql);
         
         return $result;

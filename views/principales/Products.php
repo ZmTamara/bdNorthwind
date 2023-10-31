@@ -37,8 +37,8 @@
                         <a href="#"><i class="fa fa-edit "></i>Principales<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="../principales/Customers.php">Customers</a></li>
-                            <li><a href="#">Employees</a></li>
-                            <li><a href="../principales/Products.php">Products</a></li>
+                            <li><a href="#¿../principales/employee_controller.php">Employees</a></li>
+                            <li><a href="#">Products</a></li>
                         </ul>
                     </li>
                     <li>
@@ -69,7 +69,7 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Table Employees</h2>
+                        <h2>Table Products</h2>
                         </hr> 
                         <div class="row">
                         <div class="col-md-12">
@@ -78,22 +78,18 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>LastName</th>
-                                    <th>FirstName</th>
-                                    <th>Address</th>
-                                    <th>HomePhone</th>
+                                    <th>ProductName</th>
+                                    <th>QuantityPerUnit</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php 
-                                include '../../controllers/employee_controller.php';
+                                include '../../controllers/product_controller.php';
                                 while ($data=$result->fetch_assoc()){ ?>
                                 <tr>
-                                    <td><?=$data['EmployeeID'] ?></td>
-                                    <td><?=$data['LastName'] ?></td>
-                                    <td><?=$data['FirstName'] ?></td>
-                                    <td><?=$data['Address'] ?></td>
-                                    <td><?=$data['HomePhone'] ?></td>
+                                    <td><?=$data['ProductID'] ?></td>
+                                    <td><?=$data['ProductName'] ?></td>
+                                    <td><?=$data['QuantityPerUnit'] ?></td>
                                 </tr>
                                 <?php }?>                                                 
                             </tbody>

@@ -21,6 +21,4 @@ class connection
         // Aquí puedes ejecutar consultas SQL y realizar operaciones en la base de datos
     }
 }
-// Cerrar la conexión cuando hayas terminado
-//$conn->close();
 ?>

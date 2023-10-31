@@ -14,3 +14,23 @@ BEGIN
 END$$
 
 CALL selec_customers(); 
+
+--PROCEDURE EMPLOYEES
+CREATE PROCEDURE selec_employees()
+BEGIN
+  SELECT * FROM employees;
+END$$
+CALL selec_employees()
+
+--PROCEDURE Products
+CREATE PROCEDURE selec_products()
+BEGIN
+  SELECT * FROM products;
+END$$
+CALL selec_products()
+
+CREATE PROCEDURE selec_order()
+BEGIN
+  SELECT * FROM orders;
+END$$
+CALL selec_order()

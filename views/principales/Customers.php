@@ -38,14 +38,14 @@
                         <ul class="nav nav-second-level">
                             <li><a href="#">Customers</a></li>
                             <li><a href="../principales/employees.php">Employees</a></li>
-                            <li><a href="#">Products</a></li>
+                            <li><a href="../principales/Products.php">Products</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-sitemap "></i>Principales Tablas relacionadas<span
                                 class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="#">Customers-Orders</a></li>
+                            <li><a href="../principales-tb-relaci/customers_order.php">Customers-Orders</a></li>
                             <li><a href="#">Employees-Orders</a></li>
                             <li><a href="#">Products-Categories</a></li>
                         </ul>
@@ -86,7 +86,7 @@
                             </thead>
                             <tbody>
                                 <?php 
-                                include '../../controllers/crud_controller.php';
+                                include '../../controllers/customer_controller.php';
                                 while ($data=$result->fetch_assoc()){ ?>
                                 <tr>
                                     <td><?=$data['CustomerID'] ?></td>
