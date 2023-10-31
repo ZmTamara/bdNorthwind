@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,6 +14,7 @@
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
+
 <body>
     <div id="wrapper">
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -23,13 +25,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><i class="fa fa-square-o "></i>&nbsp;NORTHWIND</a>
+                    <a class="navbar-brand" href="#">NORTHWIND</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">See Website</a></li>
-                        <li><a href="#">Open Ticket</a></li>
-                        <li><a href="#">Report Bug</a></li>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Salir</a></li>
                     </ul>
                 </div>
             </div>
@@ -40,48 +41,14 @@
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
                     <li>
-                        <a href="#"><i class="fa fa-edit "></i>Principales<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-edit "></i>Principales<span class="fa fa-arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li>
-                                <a href="../views/principales/customers.php">Customers</a>
-                            </li>
-                            <li>
-                                <a href="../views/principales/employees.php">Employees</a>
-                            </li>
-                            <li>
-                                <a href="#">Products</a>
-                            </li>
+                            <li><a href="./principales/Customers.php">Customers</a></li>
+                            <li><a href="./principales/Employees.php">Employees</a></li>
+                            <li><a href="./principales/Products.php">Products</a></li>
+                            <li><a href="./principales/Orders.php">Orders</a></li>
+                            <li><a href="./principales/Categories.php">Categories</a></li>
                         </ul>
-                    </li>
-
-                    <li>
-                        <a href="#"><i class="fa fa-sitemap "></i>Principales Tablas relacionadas<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="#">Customers-Orders</a>
-                            </li>
-                            <li>
-                                <a href="#">Employees-Orders</a>
-                            </li>
-                            <li>
-                                <a href="#">Products-Categories</a>
-                                
-
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-qrcode "></i>Tabs & Panels</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-bar-chart-o"></i>Mettis Charts</a>
-                    </li>
-
-                    <li>
-                        <a href="#"><i class="fa fa-edit "></i>Last Link </a>
-                    </li>
-                    <li>
-                        <a href="blank.html"><i class="fa fa-table "></i>Blank Page</a>
                     </li>
                 </ul>
 
@@ -93,7 +60,7 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Welcome Administrator</h2>
+                        <h2>Bienvenido administrador</h2>
                     </div>
                 </div>
                 <!-- /. ROW  -->
@@ -108,7 +75,7 @@
                             </div>
                             <div class="panel-footer back-footer-blue">
                                 Descenso significativo
-                            
+
                             </div>
                         </div>
                     </div>
@@ -117,11 +84,11 @@
                         <div class="alert alert-info text-center">
                             <i class="fa fa-desktop fa-5x"></i>
                             <h3>10 000$</h3>
-                            Ingresos constantes / Ingresos Activos 
+                            Ingresos constantes / Ingresos Activos
                         </div>
                     </div>
                     <div class="col-md-6">
-                        
+
                         <br />
                         <br />
                         <h5>Progreso...</h5>
@@ -161,7 +128,7 @@
                 <hr />
                 <div class="row">
                     <div class="col-md-6">
-                        <h5>Table  Sample One</h5>
+                        <h5>Table Sample One</h5>
                         <table class="table table-striped table-bordered table-hover">
                             <thead>
                                 <tr>
@@ -201,7 +168,7 @@
 
                     </div>
                     <div class="col-md-6">
-                        <h5>Table  Sample Two</h5>
+                        <h5>Table Sample Two</h5>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
@@ -296,11 +263,11 @@
                                     </h4>
                                 </div>
                                 <div id="collapseThree" class="panel-collapse collapse">
-                                  
 
-                                        <div class="panel-body">
-                                             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
-                                        </div>
+
+                                    <div class="panel-body">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -321,25 +288,25 @@
                                 <h4>Home Tab</h4>
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
                                 </p>
                             </div>
                             <div class="tab-pane fade" id="profile">
                                 <h4>Profile Tab</h4>
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
                                 </p>
 
                             </div>
                             <div class="tab-pane fade" id="messages">
                                 <h4>Messages Tab</h4>
-                                <p >
+                                <p>
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
                                 </p>
 
                             </div>
@@ -366,4 +333,5 @@
     <!-- CUSTOM SCRIPTS -->
     <script src="assets/js/custom.js"></script>
 </body>
+
 </html>

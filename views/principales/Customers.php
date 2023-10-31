@@ -21,13 +21,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><i class="fa fa-square-o "></i>&nbsp;NORTHWIND</a>
+                    <a class="navbar-brand" href="#">NORTHWIND</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">See Website</a></li>
-                        <li><a href="#">Open Ticket</a></li>
-                        <li><a href="#">Report Bug</a></li>
+                        <li><a href="../index.php">Inicio</a></li>
+                        <li><a href="#">Salir</a></li>
                     </ul>
                 </div>
             </div>
@@ -44,26 +43,6 @@
                             <li><a href="../principales/Orders.php">Orders</a></li>
                             <li><a href="../principales/Categories.php">Categories</a></li>
                         </ul>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-sitemap "></i>Principales Tablas relacionadas<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="../principales-tb-relaci/customers_order.php">Customers-Orders</a></li>
-                            <li><a href="#">Employees-Orders</a></li>
-                            <li><a href="#">Products-Categories</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-qrcode "></i>Tabs & Panels</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-bar-chart-o"></i>Mettis Charts</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-edit "></i>Last Link </a>
-                    </li>
-                    <li>
-                        <a href="blank.html"><i class="fa fa-table "></i>Blank Page</a>
                     </li>
                 </ul>
             </div>
