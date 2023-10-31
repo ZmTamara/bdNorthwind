@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CUSTOMERS</title>
+    <title>ORDERS</title>
     <link href="../../css/bootstrap.css" rel="stylesheet" />
     <link href="../../css/font-awesome.css" rel="stylesheet" />
     <link href="../../css/custom.css" rel="stylesheet" />
@@ -38,10 +38,10 @@
                     <li>
                         <a href="#"><i class="fa fa-edit "></i>Principales<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="#">Customers</a></li>
+                            <li><a href="../principales/Customers.php">Customers</a></li>
                             <li><a href="../principales/Employees.php">Employees</a></li>
                             <li><a href="../principales/Products.php">Products</a></li>
-                            <li><a href="../principales/Orders.php">Orders</a></li>
+                            <li><a href="#">Orders</a></li>
                             <li><a href="../principales/Categories.php">Categories</a></li>
                         </ul>
                     </li>
@@ -72,7 +72,7 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Table Customers</h2>
+                        <h2>Table Employees</h2>
                         </hr>
                         <div class="row">
                             <div class="col-md-12">
@@ -81,34 +81,40 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>CompanyName</th>
-                                            <th>ContactName</th>
-                                            <th>ContactTitle</th>
-                                            <th>Address</th>
-                                            <th>City</th>
-                                            <th>Region</th>
-                                            <th>PostalCode</th>
-                                            <th>Country</th>
-                                            <th>Phone</th>
-                                            <th>Fax</th>
+                                            <th>CustomerID</th>
+                                            <th>EmployeeID</th>
+                                            <th>OrderDate</th>
+                                            <th>RequiredDate</th>
+                                            <th>ShippedDate</th>
+                                            <th>ShipVia</th>
+                                            <th>Freight</th>
+                                            <th>ShipName</th>
+                                            <th>ShipAddress</th>
+                                            <th>ShipCity</th>
+                                            <th>ShipRegion</th>
+                                            <th>ShipPostalCode</th>
+                                            <th>ShipCountry</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        include '../../controllers/customer_controller.php';
+                                        include '../../controllers/order_controller.php';
                                         while ($data = $result->fetch_assoc()) { ?>
                                             <tr>
+                                                <td><?= $data['OrderID'] ?></td>
                                                 <td><?= $data['CustomerID'] ?></td>
-                                                <td><?= $data['CompanyName'] ?></td>
-                                                <td><?= $data['ContactName'] ?></td>
-                                                <td><?= $data['ContactTitle'] ?></td>
-                                                <td><?= $data['Address'] ?></td>
-                                                <td><?= $data['City'] ?></td>
-                                                <td><?= $data['Region'] ?></td>
-                                                <td><?= $data['PostalCode'] ?></td>
-                                                <td><?= $data['Country'] ?></td>
-                                                <td><?= $data['Phone'] ?></td>
-                                                <td><?= $data['Fax'] ?></td>
+                                                <td><?= $data['EmployeeID'] ?></td>
+                                                <td><?= $data['OrderDate'] ?></td>
+                                                <td><?= $data['RequiredDate'] ?></td>
+                                                <td><?= $data['ShippedDate'] ?></td>
+                                                <td><?= $data['ShipVia'] ?></td>
+                                                <td><?= $data['Freight'] ?></td>
+                                                <td><?= $data['ShipName'] ?></td>
+                                                <td><?= $data['ShipAddress'] ?></td>
+                                                <td><?= $data['ShipCity'] ?></td>
+                                                <td><?= $data['ShipRegion'] ?></td>
+                                                <td><?= $data['ShipPostalCode'] ?></td>
+                                                <td><?= $data['ShipCountry'] ?></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
