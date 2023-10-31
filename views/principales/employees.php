@@ -70,7 +70,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h2>Table Employees</h2>
-                        </hr>
+                        </hr> 
+                        <h1>hola</h1>
                         <div class="row">
                         <div class="col-md-12">
                         <h5>Datos importantes</h5>
@@ -89,7 +90,7 @@
                                 include '../../controllers/crud_controller.php';
                                 while ($data=$result->fetch_assoc()){ ?>
                                 <tr>
-                                    <td><?=$data['CustomerID'] ?></td>
+                                    <td><?=$data['EmployeeID'] ?></td>
                                     <td><?=$data['LastName'] ?></td>
                                     <td><?=$data['FirstName'] ?></td>
                                     <td><?=$data['Address'] ?></td>

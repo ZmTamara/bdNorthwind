@@ -12,10 +12,5 @@ if ($result !== null) {
     }
 
 //mostrar employees
-$resulte = $crudModel->mostrarEmployees();
-if ($resulte !== null) {
-    header("Location:http://localhost/Login/views/principales/employees.php");
-    } else {
-        echo "Error en la consulta";
-        }
+
 ?>
