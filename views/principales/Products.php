@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NORTHWIND</title>
+    <title>Products</title>
     <link href="../../css/bootstrap.css" rel="stylesheet" />
     <link href="../../css/font-awesome.css" rel="stylesheet" />
     <link href="../../css/custom.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
+
 <body>
     <div id="wrapper">
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -37,13 +39,14 @@
                         <a href="#"><i class="fa fa-edit "></i>Principales<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="../principales/Customers.php">Customers</a></li>
-                            <li><a href="#¿../principales/employee_controller.php">Employees</a></li>
+                            <li><a href="../principales/Employees.php">Employees</a></li>
                             <li><a href="#">Products</a></li>
+                            <li><a href="../principales/Orders.php">Orders</a></li>
+                            <li><a href="../principales/Categories.php">Categories</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-sitemap "></i>Principales Tablas relacionadas<span
-                                class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-sitemap "></i>Principales Tablas relacionadas<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="../principales-tb-relaci/customers_order.php">Customers-Orders</a></li>
                             <li><a href="#">Employees-Orders</a></li>
@@ -70,31 +73,45 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h2>Table Products</h2>
-                        </hr> 
+                        </hr>
                         <div class="row">
-                        <div class="col-md-12">
-                        <h5>Datos importantes</h5>
-                        <table class="table table-striped table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>ProductName</th>
-                                    <th>QuantityPerUnit</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php 
-                                include '../../controllers/product_controller.php';
-                                while ($data=$result->fetch_assoc()){ ?>
-                                <tr>
-                                    <td><?=$data['ProductID'] ?></td>
-                                    <td><?=$data['ProductName'] ?></td>
-                                    <td><?=$data['QuantityPerUnit'] ?></td>
-                                </tr>
-                                <?php }?>                                                 
-                            </tbody>
-                        </table>
-                    </div>
+                            <div class="col-md-12">
+                                <h5>Datos importantes</h5>
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>ProductName</th>
+                                            <th>SupplierID</th>
+                                            <th>CategoryID</th>
+                                            <th>QuantityPerUnit</th>
+                                            <th>UnitPrice</th>
+                                            <th>UnitsInStock</th>
+                                            <th>UnitsOnOrder</th>
+                                            <th>ReorderLevel</th>
+                                            <th>Discontinued</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        include '../../controllers/product_controller.php';
+                                        while ($data = $result->fetch_assoc()) { ?>
+                                            <tr>
+                                                <td><?= $data['ProductID'] ?></td>
+                                                <td><?= $data['ProductName'] ?></td>
+                                                <td><?= $data['SupplierID'] ?></td>
+                                                <td><?= $data['CategoryID'] ?></td>
+                                                <td><?= $data['QuantityPerUnit'] ?></td>
+                                                <td><?= $data['UnitPrice'] ?></td>
+                                                <td><?= $data['UnitsInStock'] ?></td>
+                                                <td><?= $data['UnitsOnOrder'] ?></td>
+                                                <td><?= $data['ReorderLevel'] ?></td>
+                                                <td><?= $data['Discontinued'] ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -106,4 +123,5 @@
     <script src="assets/js/jquery.metisMenu.js"></script>
     <script src="assets/js/custom.js"></script>
 </body>
+
 </html>
