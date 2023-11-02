@@ -58,7 +58,7 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Table Employees</h2>
+                        <h2>Table Categories</h2>
                         </hr>
                         <div class="row">
                             <div class="col-md-12">
@@ -67,7 +67,7 @@
                                 <!-- Botón para abrir el modal -->
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Abrir Modal</button>
 
-                                <?php include '../modal/modal_insert.php' ?>
+                                <?php include '../modal/modal-categories/modal_cat_insert.php' ?>
 
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
@@ -80,7 +80,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        include '../../controllers/categories_controller.php';
+                                        include '../../controllers/crud-controller/categories_controller/categories_controller.php';
                                         while ($data = $result->fetch_assoc()) { ?>
                                             <tr>
                                                 <td><?= $data['CategoryID'] ?></td>

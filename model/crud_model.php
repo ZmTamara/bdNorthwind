@@ -75,6 +75,17 @@ class crud_model
         return $result;
     }
 
+    public function insertarCategories($p_CategoryName)
+    {
+        include 'connection.php';
+        $conexion = new connection();
+        $conn = $conexion->conexion();
+        $sql = "CALL spu_categories_ins($p_CategoryName)";
+        $result = $conn->query($sql);
+
+        return $result;
+    }
+
 
     public function insertarcustomers($p_CustomerID, $p_CompanyName, $p_ContactName, $p_ContactTitle, $p_Adress, $p_City, $p_Region, $p_PostalCode, $p_Country, $p_Phone, $p_Fax)
     {
