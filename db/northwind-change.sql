@@ -134,9 +134,8 @@ CALL spu_categories_del(8);
 ------- fin de procedimiento eliminar category------------
 
 ----------procedimientos para insertar customers-----------------
-DELIMITER //
+
 CREATE PROCEDURE InsertCustomer(
-    IN pCustomerID CHAR(5),
     IN pCompanyName VARCHAR(255),
     IN pContactName VARCHAR(255),
     IN pContactTitle VARCHAR(255),
@@ -149,10 +148,11 @@ CREATE PROCEDURE InsertCustomer(
     IN pFax VARCHAR(255)
 )
 BEGIN
-    INSERT INTO Customers (CustomerID, CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax)
-    VALUES (pCustomerID, pCompanyName, pContactName, pContactTitle, pAddress, pCity, pRegion, pPostalCode, pCountry, pPhone, pFax);
-END //
-DELIMITER ;
+    INSERT INTO Customers (CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax)
+    VALUES (pCompanyName, pContactName, pContactTitle, pAddress, pCity, pRegion, pPostalCode, pCountry, pPhone, pFax);
+END 
+
+CALL InsertCustomer ('asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd' , 'asdasd' , 'asdasd' , 'asdasd' ,'asdasd' ,'asdasd')
 
 ------- fin de procedimiento insertar customers------------
 

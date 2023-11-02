@@ -92,7 +92,7 @@ class crud_model
         $conexion = new connection();
         $conn = $conexion->conexion();
 
-        $sql = "CALL spu_categories_ins( $CategoryName, $Description, $Picture)";
+        $sql = "CALL spu_categories_ins( ?, ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("sss", $CategoryName, $Description, $Picture);
         $stmt->execute();
