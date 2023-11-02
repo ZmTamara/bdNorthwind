@@ -1,3 +1,4 @@
+-- Active: 1696949500744@@127.0.0.1@3306@northwind
 -- phpMyAdmin SQL Dump
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
@@ -50,6 +51,41 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_customers_del` (IN `p_CustomerI
     WHERE CustomerID = p_CustomerID;
 END$$
 
+drop procedure spu_customers_del;
+
+
+DELIMITER //
+CREATE PROCEDURE DeleteCustomerCascade(IN diferente VARCHAR(5))
+BEGIN
+    -- Elimina los pedidos del cliente
+    DELETE FROM Orders WHERE CustomerID = diferente;
+
+    -- Elimina el cliente
+    DELETE FROM Customers WHERE CustomerID = diferente;
+END //
+DELIMITER ;
+drop Procedure DeleteCustomerCascade
+
+call DeleteCustomerCascade('ALFKI')
+
+ALTER TABLE orders
+DROP FOREIGN KEY FK_Orders_Customers;
+ALTER TABLE orders
+ADD CONSTRAINT FK_Orders_Customers 
+FOREIGN KEY (CustomerID) 
+REFERENCES customers(CustomerID) 
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+ALTER TABLE Orders
+ADD CONSTRAINT FK_CustomerID
+FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+ON DELETE CASCADE;
+
+ALTER TABLE orderdetails
+DROP FOREIGN KEY FK_Order_Details_Orders,
+ADD FOREIGN KEY (OrderID) REFERENCES orders (OrderID) ON DELETE CASCADE;
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_customers_ins` (IN `p_CompanyName` VARCHAR(40), IN `p_ContactName` VARCHAR(30), IN `p_ContactTile` VARCHAR(30), IN `p_Adress` VARCHAR(60), IN `p_City` VARCHAR(15), IN `p_Region` VARCHAR(15), IN `p_PostalCode` VARCHAR(10), IN `p_Country` VARCHAR(15), IN `p_Phone` VARCHAR(24), IN `p_Fax` VARCHAR(24))   BEGIN
     INSERT INTO Customers (CompanyName, ContactName, ContactTile, Adress, City, Region, PostalCode, Country, Phone, Fax)
     VALUES (p_CompanyName, p_ContactName, p_ContactTile, p_Adress,p_City ,p_Region ,p_PostalCode ,p_Country , p_Phone, p_Fax);
@@ -58,6 +94,7 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_customers_sel` ()   BEGIN
     SELECT * FROM Customers;
 END$$
+call spu_customers_sel()
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_customers_upd` (IN `p_CustomerID` INT, IN `p_CompanyName` VARCHAR(40), IN `p_ContactName` VARCHAR(30), IN `p_ContactTile` VARCHAR(30), IN `p_Adress` VARCHAR(60), IN `p_City` VARCHAR(15), IN `p_Region` VARCHAR(15), IN `p_PostalCode` VARCHAR(10), IN `p_Country` VARCHAR(15), IN `p_Phone` VARCHAR(24), IN `p_Fax` VARCHAR(24))   BEGIN
     UPDATE Customers

@@ -7,7 +7,7 @@ $redirectLocation = null;
 // mostrar customers
 $result = $crudModel->mostrarCategories();
 if ($result !== null) {
-    $redirectLocation = "http://localhost/Login/views/principales/Customers.php";
+    $redirectLocation = "http://localhost/Login/views/principales/Categories.php";
 } else {
     echo "Error en la consulta";
 }

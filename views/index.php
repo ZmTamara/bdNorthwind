@@ -27,9 +27,7 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">See Website</a></li>
-                        <li><a href="#">Open Ticket</a></li>
-                        <li><a href="#">Report Bug</a></li>
+                        <li><a href="#">Cerrar Sesion</a></li>
                     </ul>
                 </div>
             </div>
@@ -42,43 +40,15 @@
                     <li>
                         <a href="#"><i class="fa fa-edit "></i>Principales<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li>
-                                <a href="../views/principales/customers.php">Customers</a>
+                            <li><a href="../views/principales/customers.php">Customers</a>
                             </li>
-                            <li>
-                                <a href="../views/principales/employees.php">Employees</a>
+                            <li><a href="../views/principales/employees.php">Employees</a>
                             </li>
-                            <li>
-                                <a href="#">Products</a>
-                            </li>
+                            <li><a href="../views/principales/Products.php">Products</a></li>
+                            <li><a href="../views/principales/Orders.php">Orders</a></li>
+                            <li><a href="../views/principales/Categories.php">Categories</a></li>
+
                         </ul>
-                    </li>
-
-                    <li>
-                        <a href="#"><i class="fa fa-sitemap "></i>Principales Tablas relacionadas<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="#">Customers-Orders</a>
-                            </li>
-                            <li>
-                                <a href="#">Employees-Orders</a>
-                            </li>
-                            <li>
-                                <a href="#">Products-Categories</a>
-                                
-
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-qrcode "></i>Tabs & Panels</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-bar-chart-o"></i>Mettis Charts</a>
-                    </li>
-
-                    <li>
-                        <a href="#"><i class="fa fa-edit "></i>Last Link </a>
                     </li>
                     <li>
                         <a href="blank.html"><i class="fa fa-table "></i>Blank Page</a>
@@ -355,15 +325,6 @@
         </div>
         <!-- /. PAGE WRAPPER  -->
     </div>
-    <!-- /. WRAPPER  -->
-    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
-    <!-- JQUERY SCRIPTS -->
-    <script src="assets/js/jquery-1.10.2.js"></script>
-    <!-- BOOTSTRAP SCRIPTS -->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <!-- METISMENU SCRIPTS -->
-    <script src="assets/js/jquery.metisMenu.js"></script>
-    <!-- CUSTOM SCRIPTS -->
-    <script src="assets/js/custom.js"></script>
+    
 </body>
 </html>

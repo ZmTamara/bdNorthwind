@@ -2,12 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EMPLOYEES</title>
-    <link href="../../css/bootstrap.css" rel="stylesheet" />
-    <link href="../../css/font-awesome.css" rel="stylesheet" />
-    <link href="../../css/custom.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <!-- Incluir el archivo JavaScript de Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+   <link href="../../css/custom.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
 
@@ -25,9 +24,8 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">See Website</a></li>
-                        <li><a href="#">Open Ticket</a></li>
-                        <li><a href="#">Report Bug</a></li>
+                        <li><a href="http://localhost/Login/views/index.php">INICIO</a></li>
+                        <li><a href="#">Cerrar Sesion</a></li>
                     </ul>
                 </div>
             </div>
@@ -45,26 +43,7 @@
                             <li><a href="../principales/Categories.php">Categories</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#"><i class="fa fa-sitemap "></i>Principales Tablas relacionadas<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="../principales-tb-relaci/customers_order.php">Customers-Orders</a></li>
-                            <li><a href="#">Employees-Orders</a></li>
-                            <li><a href="#">Products-Categories</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-qrcode "></i>Tabs & Panels</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-bar-chart-o"></i>Mettis Charts</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-edit "></i>Last Link </a>
-                    </li>
-                    <li>
-                        <a href="blank.html"><i class="fa fa-table "></i>Blank Page</a>
-                    </li>
+                    
                 </ul>
             </div>
         </nav>
@@ -77,6 +56,11 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h5>Datos importantes</h5>
+                                <?php include '../modal-employees/create_employees.php' ?>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                New Employee
+                            </button>    
+                            <br>  <br> 
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
@@ -122,6 +106,12 @@
                                                 <!-- <td><?= $data['Photo'] ?></td> -->
                                                 <td><?= $data['Notes'] ?></td>
                                                 <td><?= $data['ReportsTo'] ?></td>
+                                                <td>
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $row['alu_id']; ?>" data-bs-whatever="@getbootstrap"><img src="../../svg/trash-2.svg" alt=""></button>              
+                                                </td>
+                                                <td>
+                                                    <button typae="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit<?php echo $row['alu_id']; ?>" data-bs-whatever="@getbootstrap"><img src="../../svg/edit-2.svg" alt=""></button>  
+                                                </td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
@@ -133,10 +123,9 @@
             </div>
         </div>
     </div>
-    <script src="assets/js/jquery-1.10.2.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.metisMenu.js"></script>
-    <script src="assets/js/custom.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>
