@@ -5,10 +5,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CUSTOMERS</title>
-    <link href="../../css/bootstrap.css" rel="stylesheet" />
+    <!-- <link href="../../css/bootstrap.css" rel="stylesheet" /> -->
     <link href="../../css/font-awesome.css" rel="stylesheet" />
     <link href="../../css/custom.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <!-- Incluir jQuery (necesario para Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+    <!-- Incluir el archivo JavaScript de Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -56,6 +63,12 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h5>Datos importantes</h5>
+                                <!-- <button class="btn-primary" style="padding: 12px 30px 12px 30px; border-radius: 10px 20px 20px 10px; margin-bottom: 10px"> NUEVO +</button> -->
+
+                                <!-- Botón para abrir el modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Abrir Modal</button>
+
+                                <?php include '../modal/modal_insert.php' ?>
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
@@ -99,10 +112,6 @@
             </div>
         </div>
     </div>
-    <script src="assets/js/jquery-1.10.2.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.metisMenu.js"></script>
-    <script src="assets/js/custom.js"></script>
 </body>
 
 </html>

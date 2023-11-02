@@ -5,10 +5,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ORDERS</title>
-    <link href="../../css/bootstrap.css" rel="stylesheet" />
+    <!-- <link href="../../css/bootstrap.css" rel="stylesheet" /> -->
     <link href="../../css/font-awesome.css" rel="stylesheet" />
     <link href="../../css/custom.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <!-- Incluir jQuery (necesario para Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+    <!-- Incluir el archivo JavaScript de Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
