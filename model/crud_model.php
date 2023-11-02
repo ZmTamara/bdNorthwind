@@ -1,6 +1,7 @@
 <?php
 class crud_model
 {
+    //CUSTOMERS 
     public function mostrarCustomers()
     {
         include 'connection.php';
@@ -12,6 +13,14 @@ class crud_model
 
         return $result;
     }
+
+
+
+
+
+
+
+    //EMPLOYEES
 
     public function mostrarEmployees()
     {
@@ -49,6 +58,11 @@ class crud_model
         return $result;
     }
 
+
+
+
+    //CATEGORIES
+
     public function mostrarCategories()
     {
         include 'connection.php';
@@ -56,6 +70,47 @@ class crud_model
         $conn = $conexion->conexion();
 
         $sql = "CALL spu_categories_sel()";
+        $result = $conn->query($sql);
+
+        return $result;
+    }
+
+
+    public function insertarcustomers($p_CustomerID, $p_CompanyName, $p_ContactName, $p_ContactTitle, $p_Adress, $p_City, $p_Region, $p_PostalCode, $p_Country, $p_Phone, $p_Fax)
+    {
+        include 'connection.php';
+        $conexion = new connection();
+        $conn = $conexion->conexion();
+        $sql = "CALL spu_customers_ins($p_CustomerID, $p_CompanyName, $p_ContactName, $p_ContactTitle, $p_Adress, $p_City, $p_Region, $p_PostalCode, $p_Country, $p_Phone, $p_Fax)";
+        $result = $conn->query($sql);
+
+        return $result;
+    }
+
+
+
+
+
+    public function insertarejm($p_apellido, $p_nombre)
+    {
+        include 'connection.php';
+        $conexion = new connection();
+        $conn = $conexion->conexion();
+
+        $sql = "CALL spu_ejm_ins('$p_apellido', '$p_nombre')";
+        $result = $conn->query($sql);
+
+        return $result;
+    }
+
+
+    public function mostrarejm()
+    {
+        include 'connection.php';
+        $conexion = new connection();
+        $conn = $conexion->conexion();
+
+        $sql = "CALL spu_ejm_sel()";
         $result = $conn->query($sql);
 
         return $result;

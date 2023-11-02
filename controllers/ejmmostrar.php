@@ -5,17 +5,9 @@ $crudModel = new crud_model();
 $redirectLocation = null;
 
 // mostrar categories
-$result = $crudModel->mostrarCategories();
+$result = $crudModel->mostrarejm();
 if ($result !== null) {
     $redirectLocation = "http://localhost/Login/views/principales/Customers.php";
 } else {
     echo "Error en la consulta";
 }
-
-//insertar categories
-// $result = $crudModel->insertarCategories();
-// if ($result !== null) {
-//     $redirectLocation = "http://localhost/Login/views/principales/Customers.php";
-// } else {
-//     echo "Error en la consulta";
-// }

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Products</title>
+    <title>CUSTOMERS</title>
     <!-- <link href="../../css/bootstrap.css" rel="stylesheet" /> -->
     <link href="../../css/font-awesome.css" rel="stylesheet" />
     <link href="../../css/custom.css" rel="stylesheet" />
@@ -44,11 +44,12 @@
                     <li>
                         <a href="#"><i class="fa fa-edit "></i>Principales<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="../principales/Customers.php">Customers</a></li>
+                            <li><a href="#">Customers</a></li>
                             <li><a href="../principales/Employees.php">Employees</a></li>
-                            <li><a href="#">Products</a></li>
+                            <li><a href="../principales/Products.php">Products</a></li>
                             <li><a href="../principales/Orders.php">Orders</a></li>
                             <li><a href="../principales/Categories.php">Categories</a></li>
+                            <li><a href="#">Ejm</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -58,41 +59,33 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Table Products</h2>
+                        <h2>Table Customers</h2>
                         </hr>
                         <div class="row">
                             <div class="col-md-12">
                                 <h5>Datos importantes</h5>
+                                <!-- <button class="btn-primary" style="padding: 12px 30px 12px 30px; border-radius: 10px 20px 20px 10px; margin-bottom: 10px"> NUEVO +</button> -->
+
+                                <!-- Botón para abrir el modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Abrir Modal</button>
+
+                                <?php include '../modal/modal_insert.php' ?>
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>ProductName</th>
-                                            <th>SupplierID</th>
-                                            <th>CategoryID</th>
-                                            <th>QuantityPerUnit</th>
-                                            <th>UnitPrice</th>
-                                            <th>UnitsInStock</th>
-                                            <th>UnitsOnOrder</th>
-                                            <th>ReorderLevel</th>
-                                            <th>Discontinued</th>
+                                            <th>apellido</th>
+                                            <th>nombre</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        include '../../controllers/product_controller.php';
+                                        include '../../controllers/ejmmostrar.php';
                                         while ($data = $result->fetch_assoc()) { ?>
                                             <tr>
-                                                <td><?= $data['ProductID'] ?></td>
-                                                <td><?= $data['ProductName'] ?></td>
-                                                <td><?= $data['SupplierID'] ?></td>
-                                                <td><?= $data['CategoryID'] ?></td>
-                                                <td><?= $data['QuantityPerUnit'] ?></td>
-                                                <td><?= $data['UnitPrice'] ?></td>
-                                                <td><?= $data['UnitsInStock'] ?></td>
-                                                <td><?= $data['UnitsOnOrder'] ?></td>
-                                                <td><?= $data['ReorderLevel'] ?></td>
-                                                <td><?= $data['Discontinued'] ?></td>
+                                                <td><?= $data['id'] ?></td>
+                                                <td><?= $data['apellido'] ?></td>
+                                                <td><?= $data['nombre'] ?></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
@@ -104,10 +97,6 @@
             </div>
         </div>
     </div>
-    <script src="assets/js/jquery-1.10.2.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.metisMenu.js"></script>
-    <script src="assets/js/custom.js"></script>
 </body>
 
 </html>

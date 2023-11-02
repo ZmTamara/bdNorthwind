@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-10-2023 a las 21:34:40
+-- Tiempo de generación: 02-11-2023 a las 03:40:29
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.1.17
 
@@ -31,16 +31,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_categories_del` (IN `p_Category
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_categories_ins` (IN `p_CategoryName` VARCHAR(15), IN `p_Description` TEXT(4294967295), IN `p_Picture` BLOB(4294967295))   BEGIN
-    INSERT INTO Products (CategoryName, Description, Picture)
+    INSERT INTO products (CategoryName, Description, Picture)
     VALUES (p_CategoryName, p_Description, p_Picture);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_categories_sel` ()   BEGIN
-    SELECT * FROM Categories;
+    SELECT * FROM categories;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_categories_udp` (IN `p_CategoryID` INT, IN `p_CategoryName` VARCHAR(15), IN `p_Description` TEXT(4294967295), IN `p_Picture` BLOB(4294967295))   BEGIN
-    UPDATE Categories
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_categories_udp` (IN `p_CategoryID` INT(11), IN `p_CategoryName` VARCHAR(15), IN `p_Description` TEXT(4294967295), IN `p_Picture` BLOB(4294967295))   BEGIN
+    UPDATE categories
     SET CategoryName = p_CategoryName, Description = p_Description, Picture = p_Picture
     WHERE CategoryID = p_CategoryID;
 END$$
@@ -50,38 +50,47 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_customers_del` (IN `p_CustomerI
     WHERE CustomerID = p_CustomerID;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_customers_ins` (IN `p_CompanyName` VARCHAR(40), IN `p_ContactName` VARCHAR(30), IN `p_ContactTile` VARCHAR(30), IN `p_Adress` VARCHAR(60), IN `p_City` VARCHAR(15), IN `p_Region` VARCHAR(15), IN `p_PostalCode` VARCHAR(10), IN `p_Country` VARCHAR(15), IN `p_Phone` VARCHAR(24), IN `p_Fax` VARCHAR(24))   BEGIN
-    INSERT INTO Customers (CompanyName, ContactName, ContactTile, Adress, City, Region, PostalCode, Country, Phone, Fax)
-    VALUES (p_CompanyName, p_ContactName, p_ContactTile, p_Adress,p_City ,p_Region ,p_PostalCode ,p_Country , p_Phone, p_Fax);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_customers_ins` (IN `p_CustomerID` CHAR(5), IN `p_CompanyName` VARCHAR(40), IN `p_ContactName` VARCHAR(30), IN `p_ContactTitle` VARCHAR(30), IN `p_Address` VARCHAR(60), IN `p_City` VARCHAR(15), IN `p_Region` VARCHAR(15), IN `p_PostalCode` VARCHAR(10), IN `p_Country` VARCHAR(15), IN `p_Phone` VARCHAR(24), IN `p_Fax` VARCHAR(24))   BEGIN
+    INSERT INTO customers (CustomerID, CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax)
+    VALUES (p_CustomerID, p_CompanyName, p_ContactName, p_ContactTitle, p_Adress,p_City ,p_Region ,p_PostalCode ,p_Country , p_Phone, p_Fax);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_customers_sel` ()   BEGIN
-    SELECT * FROM Customers;
+    SELECT * FROM customers;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_customers_upd` (IN `p_CustomerID` INT, IN `p_CompanyName` VARCHAR(40), IN `p_ContactName` VARCHAR(30), IN `p_ContactTile` VARCHAR(30), IN `p_Adress` VARCHAR(60), IN `p_City` VARCHAR(15), IN `p_Region` VARCHAR(15), IN `p_PostalCode` VARCHAR(10), IN `p_Country` VARCHAR(15), IN `p_Phone` VARCHAR(24), IN `p_Fax` VARCHAR(24))   BEGIN
-    UPDATE Customers
-    SET CustomerID = p_CustomerID, CompanyName = p_CompanyName, ContactName = p_ContactName, ContactTile = p_ContactTile,Adress = p_Adress ,City = p_City ,Region = p_Region ,PostalCode = p_PostalCode ,Country = p_Country ,Phone = p_Phone ,Fax = p_Fax 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_customers_upd` (IN `p_CustomerID` CHAR, IN `p_CompanyName` VARCHAR(40), IN `p_ContactName` VARCHAR(30), IN `p_ContactTitle` VARCHAR(30), IN `p_Adress` VARCHAR(60), IN `p_City` VARCHAR(15), IN `p_Region` VARCHAR(15), IN `p_PostalCode` VARCHAR(10), IN `p_Country` VARCHAR(15), IN `p_Phone` VARCHAR(24), IN `p_Fax` VARCHAR(24))   BEGIN
+    UPDATE customers
+    SET CustomerID = p_CustomerID, CompanyName = p_CompanyName, ContactName = p_ContactName, ContactTitle = p_ContactTitle,Adress = p_Adress ,City = p_City ,Region = p_Region ,PostalCode = p_PostalCode ,Country = p_Country ,Phone = p_Phone ,Fax = p_Fax 
     WHERE CustomerID = p_CustomerID;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_ejm_ins` (IN `p_apellido` VARCHAR(30), IN `p_nombre` VARCHAR(30))   BEGIN
+    INSERT INTO ejm (apellido, nombre)
+    VALUES (p_apellido, p_nombre);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_ejm_sel` ()   BEGIN
+    SELECT * FROM ejm;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_employees_del` (IN `p_EmployeeID` INT)   BEGIN
-    DELETE FROM Employees
+    DELETE FROM employees
     WHERE EmployeeID = p_EmployeeID;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_employees_ins` (IN `p_FirstName` VARCHAR(20), IN `p_LastName` VARCHAR(20), IN `p_Tile` VARCHAR(30), IN `p_TitleOfCourtesy` VARCHAR(255), IN `p_BirthDate` DATETIME, IN `p_HireDate` DATETIME, IN `p_Address` VARCHAR(60), IN `p_City` VARCHAR(15), IN `p_Region` VARCHAR(15), IN `p_PortalCode` VARCHAR(10), IN `p_Country` VARCHAR(15), IN `p_HomePhone` VARCHAR(24), IN `p_Extension` VARCHAR(24), IN `p_Photo` BLOB(4294967295), IN `p_Notes` TEXT(4294967295), IN `p_ReportsTo` INT(11), IN `p_PhotoPath` VARCHAR(255))   BEGIN
-    INSERT INTO Employees (FirstName, LastName, Title, TitleOfCourtesy, BirthDate, HireDate, Address, City, Region, PostalCode, Country, HomePhone, Extension, Photo, Notes, ReportsTo, PhotoPath )
-    VALUES (p_FirstName, p_LastName, p_Tile, p_TitleOfCourtesy,p_BirthDate ,p_HireDate ,p_Address ,p_City , p_Region, p_PortalCode, p_Country, p_HomePhone,p_Extension ,p_Photo ,p_Notes ,p_ReportsTo , p_PhotoPath);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_employees_ins` (IN `p_LastName` VARCHAR(20), IN `p_FirstName` VARCHAR(20), IN `p_Title` VARCHAR(30), IN `p_TitleOfCourtesy` VARCHAR(255), IN `p_BirthDate` DATETIME, IN `p_HireDate` DATETIME, IN `p_Address` VARCHAR(60), IN `p_City` VARCHAR(15), IN `p_Region` VARCHAR(15), IN `p_PostalCode` VARCHAR(10), IN `p_Country` VARCHAR(15), IN `p_HomePhone` VARCHAR(24), IN `p_Extension` VARCHAR(24), IN `p_Photo` BLOB(4294967295), IN `p_Notes` TEXT(4294967295), IN `p_ReportsTo` INT(11), IN `p_PhotoPath` VARCHAR(255))   BEGIN
+    INSERT INTO Employees (LastName, FirstName, Title, TitleOfCourtesy, BirthDate, HireDate, Address, City, Region, PostalCode, Country, HomePhone, Extension, Photo, Notes, ReportsTo, PhotoPath )
+    VALUES (p_LastName, p_FirstName, p_Title, p_TitleOfCourtesy,p_BirthDate ,p_HireDate ,p_Address ,p_City , p_Region, p_PortalCode, p_Country, p_HomePhone,p_Extension ,p_Photo ,p_Notes ,p_ReportsTo , p_PhotoPath);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_employees_sel` ()   BEGIN
-    SELECT * FROM Employees;
+    SELECT * FROM employees;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_employees_upd` (IN `p_EmployeeID` INT, IN `p_FirstName` VARCHAR(20), IN `p_LastName` VARCHAR(20), IN `p_Tile` VARCHAR(30), IN `p_TitleOfCourtesy` VARCHAR(255), IN `p_BirthDate` DATETIME, IN `p_HireDate` DATETIME, IN `p_Address` VARCHAR(60), IN `p_City` VARCHAR(15), IN `p_Region` VARCHAR(15), IN `p_PortalCode` VARCHAR(10), IN `p_Country` VARCHAR(15), IN `p_HomePhone` VARCHAR(24), IN `p_Extension` VARCHAR(24), IN `p_Photo` BLOB(4294967295), IN `p_Notes` TEXT(4294967295), IN `p_ReportsTo` INT(11), IN `p_PhotoPath` VARCHAR(255))   BEGIN
-    UPDATE Employees
-    SET FirstName = p_FirstName, LastName = p_LastName, Title = p_Title, TitleOfCourtesy = p_TitleOfCourtesy,BirthDate = p_BirthDate ,HireDate = p_HireDate ,Address = p_Address ,City = p_City ,Region = p_Region ,PortalCode = p_PortalCode ,Country = p_Country ,HomePhone = p_HomePhone ,Extension = p_Extension ,Photo = p_Photo ,Notes = p_Notes ,ReportsTo = p_ReportsTo ,PhotoPath = p_PhotoPath 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_employees_upd` (IN `p_EmployeeID` INT, IN `p_LastName` VARCHAR(20), IN `p_FirstName` VARCHAR(20), IN `p_Title` VARCHAR(30), IN `p_TitleOfCourtesy` VARCHAR(255), IN `p_BirthDate` DATETIME, IN `p_HireDate` DATETIME, IN `p_Address` VARCHAR(60), IN `p_City` VARCHAR(15), IN `p_Region` VARCHAR(15), IN `p_PostalCode` VARCHAR(10), IN `p_Country` VARCHAR(15), IN `p_HomePhone` VARCHAR(24), IN `p_Extension` VARCHAR(24), IN `p_Photo` BLOB(4294967295), IN `p_Notes` TEXT(4294967295), IN `p_ReportsTo` INT(11), IN `p_PhotoPath` VARCHAR(255))   BEGIN
+    UPDATE employees
+    SET LastName = p_LastName, FirstName = p_FirstName, Title = p_Title, TitleOfCourtesy = p_TitleOfCourtesy,BirthDate = p_BirthDate ,HireDate = p_HireDate ,Address = p_Address ,City = p_City ,Region = p_Region ,PostalCode = p_PostalCode ,Country = p_Country ,HomePhone = p_HomePhone ,Extension = p_Extension ,Photo = p_Photo ,Notes = p_Notes ,ReportsTo = p_ReportsTo ,PhotoPath = p_PhotoPath 
     WHERE EmployeeID = p_EmployeeID;
 END$$
 
@@ -90,18 +99,18 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_orders_del` (IN `p_OrderID` INT
     WHERE OrderID = p_OrderID;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_orders_ins` (IN `p_CustomerID` CHAR(5), IN `p_EmployeeID` INT(11), IN `p_OrderDate` DATETIME, IN `p_RequireData` DATETIME, IN `p_ShippedDate` DATETIME, IN `p_ShipVia` INT(11), IN `p_Freight` DOUBLE, IN `p_ShipName` VARCHAR(40), IN `p_ShipAddress` VARCHAR(60), IN `p_ShipCity` VARCHAR(15), IN `p_ShipRegion` VARCHAR(15), IN `p_ShipPostalCode` VARCHAR(10), IN `p_ShipCountry` VARCHAR(15))   BEGIN
-    INSERT INTO Orders (CustomerID, EmployeeID, OrderDate, RequireData, ShippedDate, ShipVia, Freight, ShipName, ShipAddress, ShipCity, ShipRegion, ShipPostalCode, ShipCountry)
-    VALUES (p_CustomerID, p_EmployeeID, p_OrderDate, p_RequireData,p_ShippedDate ,p_ShipVia ,p_Freight ,p_ShipName , p_ShipAddress, p_ShipCity, p_ShipRegion, p_ShipPostalCode,p_ShipCountry);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_orders_ins` (IN `p_CustomerID` CHAR(5), IN `p_EmployeeID` INT(11), IN `p_OrderDate` DATETIME, IN `p_RequiredData` DATETIME, IN `p_ShippedDate` DATETIME, IN `p_ShipVia` INT(11), IN `p_Freight` DOUBLE, IN `p_ShipName` VARCHAR(40), IN `p_ShipAddress` VARCHAR(60), IN `p_ShipCity` VARCHAR(15), IN `p_ShipRegion` VARCHAR(15), IN `p_ShipPostalCode` VARCHAR(10), IN `p_ShipCountry` VARCHAR(15))   BEGIN
+    INSERT INTO orders (CustomerID, EmployeeID, OrderDate, RequiredData, ShippedDate, ShipVia, Freight, ShipName, ShipAddress, ShipCity, ShipRegion, ShipPostalCode, ShipCountry)
+    VALUES (p_CustomerID, p_EmployeeID, p_OrderDate, p_RequiredData,p_ShippedDate ,p_ShipVia ,p_Freight ,p_ShipName , p_ShipAddress, p_ShipCity, p_ShipRegion, p_ShipPostalCode,p_ShipCountry);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_orders_sel` ()   BEGIN
-    SELECT * FROM Orders;
+    SELECT * FROM orders;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_orders_upd` (IN `p_OrderID` INT, IN `p_CustomerID` CHAR(5), IN `p_EmployeeID` INT(11), IN `p_OrderDate` DATETIME, IN `p_RequireData` DATETIME, IN `p_ShippedDate` DATETIME, IN `p_ShipVia` INT(11), IN `p_Freight` DOUBLE, IN `p_ShipName` VARCHAR(40), IN `p_ShipAddress` VARCHAR(60), IN `p_ShipCity` VARCHAR(15), IN `p_ShipRegion` VARCHAR(15), IN `p_ShipPostalCode` VARCHAR(10), IN `p_ShipCountry` VARCHAR(15))   BEGIN
-    UPDATE Orders
-    SET CustomerID = p_CustomerID, EmployeeID = p_EmployeeID, OrderDate = p_OrderDate, RequireData = p_RequireData,ShippedDate = p_ShippedDate ,ShipVia = p_ShipVia ,Freight = p_Freight ,ShipName = p_ShipName ,ShipAddress = p_ShipAddress ,ShipCity = p_ShipCity ,ShipRegion = p_ShipRegion ,ShipPostalCode = p_ShipPostalCode ,ShipCountry = p_ShipCountry 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_orders_upd` (IN `p_OrderID` INT, IN `p_CustomerID` CHAR(5), IN `p_EmployeeID` INT(11), IN `p_OrderDate` DATETIME, IN `p_RequiredData` DATETIME, IN `p_ShippedDate` DATETIME, IN `p_ShipVia` INT(11), IN `p_Freight` DOUBLE, IN `p_ShipName` VARCHAR(40), IN `p_ShipAddress` VARCHAR(60), IN `p_ShipCity` VARCHAR(15), IN `p_ShipRegion` VARCHAR(15), IN `p_ShipPostalCode` VARCHAR(10), IN `p_ShipCountry` VARCHAR(15))   BEGIN
+    UPDATE orders
+    SET CustomerID = p_CustomerID, EmployeeID = p_EmployeeID, OrderDate = p_OrderDate, RequiredData = p_RequiredData,ShippedDate = p_ShippedDate ,ShipVia = p_ShipVia ,Freight = p_Freight ,ShipName = p_ShipName ,ShipAddress = p_ShipAddress ,ShipCity = p_ShipCity ,ShipRegion = p_ShipRegion ,ShipPostalCode = p_ShipPostalCode ,ShipCountry = p_ShipCountry 
     WHERE OrderID = p_OrderID;
 END$$
 
@@ -111,16 +120,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_products_del` (IN `p_ProductID`
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_products_ins` (IN `p_ProductName` VARCHAR(40), IN `p_SupplierID` INT(11), IN `p_CategoryID` INT(11), IN `p_QuantityPerUnit` VARCHAR(20), IN `p_UnitPrice` DOUBLE, IN `p_UnitsInStock` SMALLINT(6), IN `p_UnitsOnOrder` SMALLINT(6), IN `p_ReorderLevel` SMALLINT(6), IN `p_Discontinued` TINYINT(1))   BEGIN
-    INSERT INTO Products (ProductName, SupplierID, CategoryID, QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel, Discontinued)
+    INSERT INTO products (ProductName, SupplierID, CategoryID, QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel, Discontinued)
     VALUES (p_ProductName, p_SupplierID, p_CategoryID, p_QuantityPerUnit,p_UnitPrice ,p_UnitsInStock ,p_UnitsOnOrder ,p_ReorderLevel , p_Discontinued);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_products_sel` ()   BEGIN
-    SELECT * FROM Products;
+    SELECT * FROM products;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_products_upd` (IN `p_ProductID` INT, IN `p_ProductName` VARCHAR(40), IN `p_SupplierID` INT(11), IN `p_CategoryID` INT(11), IN `p_QuantityPerUnit` VARCHAR(20), IN `p_UnitPrice` DOUBLE, IN `p_UnitsInStock` SMALLINT(6), IN `p_UnitsOnOrder` SMALLINT(6), IN `p_ReorderLevel` SMALLINT(6), IN `p_Discontinued` TINYINT(1))   BEGIN
-    UPDATE Products
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_products_upd` (IN `p_ProductID` INT(11), IN `p_ProductName` VARCHAR(40), IN `p_SupplierID` INT(11), IN `p_CategoryID` INT(11), IN `p_QuantityPerUnit` VARCHAR(20), IN `p_UnitPrice` DOUBLE, IN `p_UnitsInStock` SMALLINT(6), IN `p_UnitsOnOrder` SMALLINT(6), IN `p_ReorderLevel` SMALLINT(6), IN `p_Discontinued` TINYINT(1))   BEGIN
+    UPDATE products
     SET ProductName = p_ProductName, SupplierID = p_SupplierID, CategoryID = p_CategoryID, QuantityPerUnit = p_QuantityPerUnit,UnitPrice = p_UnitPrice ,UnitsInStock = p_UnitsInStock ,UnitsOnOrder = p_UnitsOnOrder ,ReorderLevel = p_ReorderLevel ,Discontinued = p_Discontinued 
     WHERE ProductID = p_ProductID;
 END$$
@@ -220,6 +229,7 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`CustomerID`, `CompanyName`, `ContactName`, `ContactTitle`, `Address`, `City`, `Region`, `PostalCode`, `Country`, `Phone`, `Fax`) VALUES
+('', 'aaaaa', 'ssss', 'dddd', 'ffff', 'gggg', 'hhhh', 'iiii', 'jjjj', 'kkk', 'llll'),
 ('ALFKI', 'Alfreds Futterkiste', 'Maria Anders', 'Sales Representative', 'Obere Str. 57', 'Berlin', '', '12209', 'Germany', '030-0074321', '030-0076545'),
 ('ANATR', 'Ana Trujillo Emparedados y helados', 'Ana Trujillo', 'Owner', 'Avda. de la Constituci?n 2222', 'M?xico D.F.', '', '05021', 'Mexico', '(5) 555-4729', '(5) 555-3745'),
 ('ANTON', 'Antonio Moreno Taquer?a', 'Antonio Moreno', 'Owner', 'Mataderos  2312', 'M?xico D.F.', '', '05023', 'Mexico', '(5) 555-3932', ''),
@@ -295,7 +305,10 @@ INSERT INTO `customers` (`CustomerID`, `CompanyName`, `ContactName`, `ContactTit
 ('SIMOB', 'Simons bistro', 'Jytte Petersen', 'Owner', 'Vinb?ltet 34', 'Kobenhavn', '', '1734', 'Denmark', '31 12 34 56', '31 13 35 57'),
 ('SPECD', 'Sp?cialit?s du monde', 'Dominique Perrier', 'Marketing Manager', '25, rue Lauriston', 'Paris', '', '75016', 'France', '(1) 47.55.60.10', '(1) 47.55.60.20'),
 ('SPLIR', 'Split Rail Beer & Ale', 'Art Braunschweiger', 'Sales Manager', 'P.O. Box 555', 'Lander', 'WY', '82520', 'USA', '(307) 555-4680', '(307) 555-6525'),
+('sss', 'xddd', 'qqqq', 'qwer', 'asda', 'asdas', 'sss', ' asdasd', 'asdasd', 'asdasd', 'ssdas'),
 ('SUPRD', 'Supr?mes d?lices', 'Pascale Cartrain', 'Accounting Manager', 'Boulevard Tirou, 255', 'Charleroi', '', 'B-6000', 'Belgium', '(071) 23 67 22 20', '(071) 23 67 22 21'),
+('tasua', 'xddd', 'qqqq', 'qwer', 'asda', 'asdas', 'sss', ' asdasd', 'asdasd', 'asdasd', 'ssdas'),
+('tasus', 'xddd', 'qqqq', 'qwer', 'asda', 'asdas', 'sss', ' asdasd', 'asdasd', 'asdasd', 'ssdas'),
 ('THEBI', 'The Big Cheese', 'Liz Nixon', 'Marketing Manager', '89 Jefferson Way Suite 2', 'Portland', 'OR', '97201', 'USA', '(503) 555-3612', ''),
 ('THECR', 'The Cracker Box', 'Liu Wong', 'Marketing Assistant', '55 Grizzly Peak Rd.', 'Butte', 'MT', '59801', 'USA', '(406) 555-5834', '(406) 555-8083'),
 ('TOMSP', 'Toms Spezialit?ten', 'Karin Josephs', 'Marketing Manager', 'Luisenstr. 48', 'M?nster', '', '44087', 'Germany', '0251-031259', '0251-035695'),
@@ -311,6 +324,40 @@ INSERT INTO `customers` (`CustomerID`, `CompanyName`, `ContactName`, `ContactTit
 ('WHITC', 'White Clover Markets', 'Karl Jablonski', 'Owner', '305 - 14th Ave. S. Suite 3B', 'Seattle', 'WA', '98128', 'USA', '(206) 555-4112', '(206) 555-4115'),
 ('WILMK', 'Wilman Kala', 'Matti Karttunen', 'Owner/Marketing Assistant', 'Keskuskatu 45', 'Helsinki', '', '21240', 'Finland', '90-224 8858', '90-224 8858'),
 ('WOLZA', 'Wolski  Zajazd', 'Zbyszek Piestrzeniewicz', 'Owner', 'ul. Filtrowa 68', 'Warszawa', '', '01-012', 'Poland', '(26) 642-7012', '(26) 642-7012');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ejm`
+--
+
+CREATE TABLE `ejm` (
+  `id` int(11) NOT NULL,
+  `apellido` varchar(30) NOT NULL,
+  `nombre` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `ejm`
+--
+
+INSERT INTO `ejm` (`id`, `apellido`, `nombre`) VALUES
+(1, 'asd', 'qwe'),
+(2, '', ''),
+(3, 'asdasd', 'qweqwe'),
+(4, 'juilia', 'asdasf'),
+(5, 'piscoya', 'franco'),
+(6, 'hhhh', 'aaaa'),
+(7, 'ggg', 'aaa'),
+(8, 'ggg', 'aaa'),
+(9, 'gggsdhdafh', 'aaaasfasf'),
+(10, 'qasdasdas', 'zxvzxcb'),
+(11, 'bbbb', 'zzzz'),
+(12, 'zzz', 'xxx'),
+(13, 'mmmmm', 'qwerty'),
+(14, 'VVV', 'ZZZ'),
+(15, '', ''),
+(16, '', '');
 
 -- --------------------------------------------------------
 
@@ -3770,6 +3817,12 @@ ALTER TABLE `customers`
   ADD KEY `Customers_Region` (`Region`);
 
 --
+-- Indices de la tabla `ejm`
+--
+ALTER TABLE `ejm`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `employees`
 --
 ALTER TABLE `employees`
@@ -3865,6 +3918,12 @@ ALTER TABLE `categories`
   MODIFY `CategoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT de la tabla `ejm`
+--
+ALTER TABLE `ejm`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
 -- AUTO_INCREMENT de la tabla `employees`
 --
 ALTER TABLE `employees`
@@ -3932,7 +3991,8 @@ ALTER TABLE `orders`
   ADD CONSTRAINT `FK_Orders_Customers` FOREIGN KEY (`CustomerID`) REFERENCES `customers` (`CustomerID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `FK_Orders_Employees` FOREIGN KEY (`EmployeeID`) REFERENCES `employees` (`EmployeeID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `FK_Orders_Shippers` FOREIGN KEY (`ShipVia`) REFERENCES `shippers` (`ShipperID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`CustomerID`) REFERENCES `customers` (`CustomerID`) ON DELETE CASCADE;
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`CustomerID`) REFERENCES `customers` (`CustomerID`) ON DELETE CASCADE,
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`CustomerID`) REFERENCES `customers` (`CustomerID`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `products`
