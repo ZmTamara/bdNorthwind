@@ -50,9 +50,6 @@
 
                         </ul>
                     </li>
-                    <li>
-                        <a href="blank.html"><i class="fa fa-table "></i>Blank Page</a>
-                    </li>
                 </ul>
 
             </div>
@@ -131,86 +128,42 @@
                 <hr />
                 <div class="row">
                     <div class="col-md-6">
-                        <h5>Table  Sample One</h5>
+                        <h5>Table Region</h5>
                         <table class="table table-striped table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Username</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                            </tbody>
+                        <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>RegionDescription</th>
+                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        include '../controllers/region-controller/c-mostrar.php';
+                                        while ($data = $result->fetch_assoc()) { ?>
+                                            <tr>
+                                                <td><?= $data['RegionID'] ?></td>
+                                                <td><?= $data['RegionDescription'] ?></td>
+                                                
+                                                <td>
+                                                    <form action="" method="POST">
+                                                    <input type="hidden" name="RegionID" value="<?= $data['RegionID']?>">
+                                                    <button type="submit" name="" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este cliente?')">
+                                                    <img src="../svg/trash-2.svg"alt=""></button>
+                                                    </form>                                                </td>
+                                                <td>
+                                                <form action="" method="POST">
+                                                    <input type="hidden" name="RegionID" value="<?= $data['RegionID']?>">
+                                                    <button type="submit" name="" class="btn btn-primary" onclick="return confirm('¿Estás seguro de eliminar este cliente?')">
+                                                    <img src="../svg/edit-2.svg"alt=""></button>
+                                                    </form>                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
                         </table>
 
                     </div>
-                    <div class="col-md-6">
-                        <h5>Table  Sample Two</h5>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="success">
-                                        <td>1</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr class="info">
-                                        <td>2</td>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr class="warning">
-                                        <td>3</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr class="danger">
-                                        <td>4</td>
-                                        <td>John</td>
-                                        <td>Smith</td>
-                                        <td>@jsmith</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                    
                 </div>
                 <!-- /. ROW  -->
                 <hr />

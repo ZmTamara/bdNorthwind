@@ -9,7 +9,6 @@
    <link href="../../css/custom.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
-
 <body>
     <div id="wrapper">
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -86,7 +85,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        include '../../controllers/employee_controller.php';
+                                        include '../../controllers/employee-controller/c-mostrar.php';
                                         while ($data = $result->fetch_assoc()) { ?>
                                             <tr>
                                                 <td><?= $data['EmployeeID'] ?></td>
@@ -107,7 +106,11 @@
                                                 <td><?= $data['Notes'] ?></td>
                                                 <td><?= $data['ReportsTo'] ?></td>
                                                 <td>
-                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $row['alu_id']; ?>" data-bs-whatever="@getbootstrap"><img src="../../svg/trash-2.svg" alt=""></button>              
+                                                    <form action="../../controllers/employee-controller/c-eliminar.php" method="POST">
+                                                    <input type="hidden" name="employeeID" value="<?= $data['EmployeeID']?>">
+                                                    <button type="submit" name="" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este empleado?')">
+                                                    <img src="../../svg/trash-2.svg"alt=""></button>
+                                                    </form>
                                                 </td>
                                                 <td>
                                                     <button typae="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit<?php echo $row['alu_id']; ?>" data-bs-whatever="@getbootstrap"><img src="../../svg/edit-2.svg" alt=""></button>  

@@ -77,7 +77,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        include '../../controllers/product_controller.php';
+                                        include '../../controllers/product-controller/c-mostrar.php';
                                         while ($data = $result->fetch_assoc()) { ?>
                                             <tr>
                                                 <td><?= $data['ProductID'] ?></td>
@@ -91,7 +91,11 @@
                                                 <td><?= $data['ReorderLevel'] ?></td>
                                                 <td><?= $data['Discontinued'] ?></td>
                                                 <td>
-                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $row['alu_id']; ?>" data-bs-whatever="@getbootstrap"><img src="../../svg/trash-2.svg" alt=""></button>              
+                                                    <form action="../../controllers/product-controller/c-eliminar.php" method="POST">
+                                                    <input type="hidden" name="productID" value="<?= $data['ProductID']?>">
+                                                    <button type="submit" name="" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este producto?')">
+                                                    <img src="../../svg/trash-2.svg" alt=""></button>
+                                                    </form>
                                                 </td>
                                                 <td>
                                                     <button typae="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit<?php echo $row['alu_id']; ?>" data-bs-whatever="@getbootstrap"><img src="../../svg/edit-2.svg" alt=""></button>  

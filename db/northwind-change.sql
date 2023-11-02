@@ -25,11 +25,6 @@ SET time_zone = "+00:00";
 DELIMITER $$
 --
 -- Procedimientos
---
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_categories_del` (IN `p_CategoryID` INT)   BEGIN
-    DELETE FROM categories
-    WHERE CategoryID = p_CategoryID;
-END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_categories_ins` (IN `p_CategoryName` VARCHAR(15), IN `p_Description` TEXT(4294967295), IN `p_Picture` BLOB(4294967295))   BEGIN
     INSERT INTO Products (CategoryName, Description, Picture)
@@ -40,20 +35,19 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_categories_sel` ()   BEGIN
     SELECT * FROM Categories;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_region_sel` ()   BEGIN
+    SELECT * FROM region;
+END$$
+
+call spu_region_sel
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_categories_udp` (IN `p_CategoryID` INT, IN `p_CategoryName` VARCHAR(15), IN `p_Description` TEXT(4294967295), IN `p_Picture` BLOB(4294967295))   BEGIN
     UPDATE Categories
     SET CategoryName = p_CategoryName, Description = p_Description, Picture = p_Picture
     WHERE CategoryID = p_CategoryID;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_customers_del` (IN `p_CustomerID` CHAR)   BEGIN
-    DELETE FROM customers
-    WHERE CustomerID = p_CustomerID;
-END$$
-
-drop procedure spu_customers_del;
-
-
+--PROCEDURE PARA ELIMINAR CUSTOMER-ORDER
 DELIMITER //
 CREATE PROCEDURE DeleteCustomerCascade(IN diferente VARCHAR(5))
 BEGIN
@@ -63,9 +57,6 @@ BEGIN
     -- Elimina el cliente
     DELETE FROM Customers WHERE CustomerID = diferente;
 END //
-DELIMITER ;
-drop Procedure DeleteCustomerCascade
-
 call DeleteCustomerCascade('ALFKI')
 
 ALTER TABLE orders
@@ -85,11 +76,87 @@ ON DELETE CASCADE;
 ALTER TABLE orderdetails
 DROP FOREIGN KEY FK_Order_Details_Orders,
 ADD FOREIGN KEY (OrderID) REFERENCES orders (OrderID) ON DELETE CASCADE;
+ -------fin de procedure eliminar customers-order -----
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_customers_ins` (IN `p_CompanyName` VARCHAR(40), IN `p_ContactName` VARCHAR(30), IN `p_ContactTile` VARCHAR(30), IN `p_Adress` VARCHAR(60), IN `p_City` VARCHAR(15), IN `p_Region` VARCHAR(15), IN `p_PostalCode` VARCHAR(10), IN `p_Country` VARCHAR(15), IN `p_Phone` VARCHAR(24), IN `p_Fax` VARCHAR(24))   BEGIN
-    INSERT INTO Customers (CompanyName, ContactName, ContactTile, Adress, City, Region, PostalCode, Country, Phone, Fax)
-    VALUES (p_CompanyName, p_ContactName, p_ContactTile, p_Adress,p_City ,p_Region ,p_PostalCode ,p_Country , p_Phone, p_Fax);
-END$$
+ ------- procedure eliminar employees
+CREATE PROCEDURE DeleteEmployeeCascade(IN diferente1 INT)
+BEGIN    
+    -- Elimina las órdenes del empleado
+    DELETE FROM Orders WHERE EmployeeID = diferente1;
+
+    -- Elimina el empleado
+    DELETE FROM Employees WHERE EmployeeID = diferente1;
+END //
+
+ALTER TABLE EmployeeTerritories
+DROP FOREIGN KEY FK_EmployeeTerritories_Employees;
+
+ALTER TABLE EmployeeTerritories
+ADD CONSTRAINT FK_EmployeeTerritories_Employees 
+FOREIGN KEY (EmployeeID) 
+REFERENCES Employees(EmployeeID) 
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+CALL DeleteEmployeeCascade(1)
+------- fin de procedimiento employee------------
+
+--------procedure para eliminar productos---------------------
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_products_del` (IN `p_ProductID` INT)   
+BEGIN
+    DELETE FROM products
+    WHERE ProductID = p_ProductID;
+END//
+DELIMITER ;
+CALL spu_products_del(1);
+//
+------- fin de procedimiento eliminar producto------------
+
+----------procedimientos para eliminar category------------------
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_categories_del` (IN `p_CategoryID` INT)   BEGIN
+    DELETE FROM categories
+    WHERE CategoryID = p_CategoryID;
+END//
+DELIMITER ;
+
+ALTER TABLE Products
+DROP FOREIGN KEY FK_Products_Categories;
+
+ALTER TABLE Products
+ADD CONSTRAINT FK_Products_Categories
+FOREIGN KEY (CategoryID)
+REFERENCES Categories(CategoryID)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+CALL spu_categories_del(8);
+//
+------- fin de procedimiento eliminar category------------
+
+----------procedimientos para insertar customers-----------------
+DELIMITER //
+CREATE PROCEDURE InsertCustomer(
+    IN pCustomerID CHAR(5),
+    IN pCompanyName VARCHAR(255),
+    IN pContactName VARCHAR(255),
+    IN pContactTitle VARCHAR(255),
+    IN pAddress VARCHAR(255),
+    IN pCity VARCHAR(255),
+    IN pRegion VARCHAR(255),
+    IN pPostalCode VARCHAR(255),
+    IN pCountry VARCHAR(255),
+    IN pPhone VARCHAR(255),
+    IN pFax VARCHAR(255)
+)
+BEGIN
+    INSERT INTO Customers (CustomerID, CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax)
+    VALUES (pCustomerID, pCompanyName, pContactName, pContactTitle, pAddress, pCity, pRegion, pPostalCode, pCountry, pPhone, pFax);
+END //
+DELIMITER ;
+
+------- fin de procedimiento insertar customers------------
+
+
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_customers_sel` ()   BEGIN
     SELECT * FROM Customers;
@@ -100,11 +167,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_customers_upd` (IN `p_CustomerI
     UPDATE Customers
     SET CustomerID = p_CustomerID, CompanyName = p_CompanyName, ContactName = p_ContactName, ContactTile = p_ContactTile,Adress = p_Adress ,City = p_City ,Region = p_Region ,PostalCode = p_PostalCode ,Country = p_Country ,Phone = p_Phone ,Fax = p_Fax 
     WHERE CustomerID = p_CustomerID;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_employees_del` (IN `p_EmployeeID` INT)   BEGIN
-    DELETE FROM Employees
-    WHERE EmployeeID = p_EmployeeID;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_employees_ins` (IN `p_FirstName` VARCHAR(20), IN `p_LastName` VARCHAR(20), IN `p_Tile` VARCHAR(30), IN `p_TitleOfCourtesy` VARCHAR(255), IN `p_BirthDate` DATETIME, IN `p_HireDate` DATETIME, IN `p_Address` VARCHAR(60), IN `p_City` VARCHAR(15), IN `p_Region` VARCHAR(15), IN `p_PortalCode` VARCHAR(10), IN `p_Country` VARCHAR(15), IN `p_HomePhone` VARCHAR(24), IN `p_Extension` VARCHAR(24), IN `p_Photo` BLOB(4294967295), IN `p_Notes` TEXT(4294967295), IN `p_ReportsTo` INT(11), IN `p_PhotoPath` VARCHAR(255))   BEGIN
@@ -140,11 +202,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_orders_upd` (IN `p_OrderID` INT
     UPDATE Orders
     SET CustomerID = p_CustomerID, EmployeeID = p_EmployeeID, OrderDate = p_OrderDate, RequireData = p_RequireData,ShippedDate = p_ShippedDate ,ShipVia = p_ShipVia ,Freight = p_Freight ,ShipName = p_ShipName ,ShipAddress = p_ShipAddress ,ShipCity = p_ShipCity ,ShipRegion = p_ShipRegion ,ShipPostalCode = p_ShipPostalCode ,ShipCountry = p_ShipCountry 
     WHERE OrderID = p_OrderID;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_products_del` (IN `p_ProductID` INT)   BEGIN
-    DELETE FROM products
-    WHERE ProductID = p_ProductID;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spu_products_ins` (IN `p_ProductName` VARCHAR(40), IN `p_SupplierID` INT(11), IN `p_CategoryID` INT(11), IN `p_QuantityPerUnit` VARCHAR(20), IN `p_UnitPrice` DOUBLE, IN `p_UnitsInStock` SMALLINT(6), IN `p_UnitsOnOrder` SMALLINT(6), IN `p_ReorderLevel` SMALLINT(6), IN `p_Discontinued` TINYINT(1))   BEGIN
@@ -2660,15 +2717,17 @@ CREATE TABLE `orders` (
 -- Volcado de datos para la tabla `orders`
 --
 
-INSERT INTO `orders` (`OrderID`, `CustomerID`, `EmployeeID`, `OrderDate`, `RequiredDate`, `ShippedDate`, `ShipVia`, `Freight`, `ShipName`, `ShipAddress`, `ShipCity`, `ShipRegion`, `ShipPostalCode`, `ShipCountry`) VALUES
-(10248, 'VINET', 5, '1996-07-04 00:00:00', '1996-08-01 00:00:00', '1996-07-16 00:00:00', 3, 32.38, 'Vins et alcools Chevalier', '59 rue de l\'Abbaye', 'Reims', '', '51100', 'France'),
-(10249, 'TOMSP', 6, '1996-07-05 00:00:00', '1996-08-16 00:00:00', '1996-07-10 00:00:00', 1, 11.61, 'Toms Spezialit�ten', 'Luisenstr. 48', 'M�nster', '', '44087', 'Germany'),
-(10250, 'HANAR', 4, '1996-07-08 00:00:00', '1996-08-05 00:00:00', '1996-07-12 00:00:00', 2, 65.83, 'Hanari Carnes', 'Rua do Pa�o, 67', 'Rio de Janeiro', 'RJ', '05454-876', 'Brazil'),
-(10251, 'VICTE', 3, '1996-07-08 00:00:00', '1996-08-05 00:00:00', '1996-07-15 00:00:00', 1, 41.34, 'Victuailles en stock', '2, rue du Commerce', 'Lyon', '', '69004', 'France'),
-(10252, 'SUPRD', 4, '1996-07-09 00:00:00', '1996-08-06 00:00:00', '1996-07-11 00:00:00', 2, 51.3, 'Supr�mes d�lices', 'Boulevard Tirou, 255', 'Charleroi', '', 'B-6000', 'Belgium'),
-(10253, 'HANAR', 3, '1996-07-10 00:00:00', '1996-07-24 00:00:00', '1996-07-16 00:00:00', 2, 58.17, 'Hanari Carnes', 'Rua do Pa�o, 67', 'Rio de Janeiro', 'RJ', '05454-876', 'Brazil'),
-(10254, 'CHOPS', 5, '1996-07-11 00:00:00', '1996-08-08 00:00:00', '1996-07-23 00:00:00', 2, 22.98, 'Chop-suey Chinese', 'Hauptstr. 31', 'Bern', '', '3012', 'Switzerland'),
-(10255, 'RICSU', 9, '1996-07-12 00:00:00', '1996-08-09 00:00:00', '1996-07-15 00:00:00', 3, 148.33, 'Richter Supermarkt', 'Starenweg 5', 'Gen�ve', '', '1204', 'Switzerland'),
+INSERT INTO `orders` ( `CustomerID`, `EmployeeID`, `OrderDate`, `RequiredDate`, `ShippedDate`, `ShipVia`, `Freight`, `ShipName`, `ShipAddress`, `ShipCity`, `ShipRegion`, `ShipPostalCode`, `ShipCountry`) VALUES
+( 'VINET', 5, '1996-07-04 00:00:00', '1996-08-01 00:00:00', '1996-07-16 00:00:00', 3, 32.38, 'Vins et alcools Chevalier', '59 rue de l\'Abbaye', 'Reims', '', '51100', 'France'),
+( 'TOMSP', 6, '1996-07-05 00:00:00', '1996-08-16 00:00:00', '1996-07-10 00:00:00', 1, 11.61, 'Toms Spezialit�ten', 'Luisenstr. 48', 'M�nster', '', '44087', 'Germany'),
+( 'HANAR', 4, '1996-07-08 00:00:00', '1996-08-05 00:00:00', '1996-07-12 00:00:00', 2, 65.83, 'Hanari Carnes', 'Rua do Pa�o, 67', 'Rio de Janeiro', 'RJ', '05454-876', 'Brazil'),
+( 'VICTE', 3, '1996-07-08 00:00:00', '1996-08-05 00:00:00', '1996-07-15 00:00:00', 1, 41.34, 'Victuailles en stock', '2, rue du Commerce', 'Lyon', '', '69004', 'France'),
+( 'SUPRD', 4, '1996-07-09 00:00:00', '1996-08-06 00:00:00', '1996-07-11 00:00:00', 2, 51.3, 'Supr�mes d�lices', 'Boulevard Tirou, 255', 'Charleroi', '', 'B-6000', 'Belgium'),
+( 'HANAR', 3, '1996-07-10 00:00:00', '1996-07-24 00:00:00', '1996-07-16 00:00:00', 2, 58.17, 'Hanari Carnes', 'Rua do Pa�o, 67', 'Rio de Janeiro', 'RJ', '05454-876', 'Brazil'),
+( 'CHOPS', 5, '1996-07-11 00:00:00', '1996-08-08 00:00:00', '1996-07-23 00:00:00', 2, 22.98, 'Chop-suey Chinese', 'Hauptstr. 31', 'Bern', '', '3012', 'Switzerland'),
+( 'RICSU', 9, '1996-07-12 00:00:00', '1996-08-09 00:00:00', '1996-07-15 00:00:00', 3, 148.33, 'Richter Supermarkt', 'Starenweg 5', 'Gen�ve', '', '1204', 'Switzerland');
+
+
 (10256, 'WELLI', 3, '1996-07-15 00:00:00', '1996-08-12 00:00:00', '1996-07-17 00:00:00', 2, 13.97, 'Wellington Importadora', 'Rua do Mercado, 12', 'Resende', 'SP', '08737-363', 'Brazil'),
 (10257, 'HILAA', 4, '1996-07-16 00:00:00', '1996-08-13 00:00:00', '1996-07-22 00:00:00', 3, 81.91, 'HILARION-Abastos', 'Carrera 22 con Ave. Carlos Soublette #8-35', 'San Crist�bal', 'T�chira', '5022', 'Venezuela'),
 (10258, 'ERNSH', 1, '1996-07-17 00:00:00', '1996-08-14 00:00:00', '1996-07-23 00:00:00', 1, 140.51, 'Ernst Handel', 'Kirchgasse 6', 'Graz', '', '8010', 'Austria'),

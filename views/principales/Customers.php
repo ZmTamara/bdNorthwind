@@ -78,7 +78,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        include '../../controllers/customer_controller.php';
+                                        include '../../controllers/customer-controller/c-mostrar.php';
                                         while ($data = $result->fetch_assoc()) { ?>
                                             <tr>
                                                 <td><?= $data['CustomerID'] ?></td>
@@ -93,11 +93,10 @@
                                                 <td><?= $data['Phone'] ?> </td>
                                                 <td><?= $data['Fax'] ?></td>
                                                 <td>
-                                                    <form action="../../controllers/del_c_controller.php" method="POST">
-                                                        <input type="hidden" name="customerID" value="<?= $data['CustomerID']?>">
-                                                        <button type="submit" name="" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este cliente?')">
-                                                            Eliminar
-                                                        </button>
+                                                    <form action="../../controllers/customer-controller/c-eliminar.php" method="POST">
+                                                    <input type="hidden" name="customerID" value="<?= $data['CustomerID']?>">
+                                                    <button type="submit" name="" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este cliente?')">
+                                                    <img src="../../svg/trash-2.svg"alt=""></button>
                                                     </form>
                                                 </td>
                                                 

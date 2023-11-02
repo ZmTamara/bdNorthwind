@@ -71,16 +71,20 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        include '../../controllers/categories_controller.php';
+                                        include '../../controllers/categorie-controller/c-mostrar.php';
                                         while ($data = $result->fetch_assoc()) { ?>
                                             <tr>
                                                 <td><?= $data['CategoryID'] ?></td>
                                                 <td><?= $data['CategoryName'] ?></td>
                                                 <td><?= $data['Description'] ?></td>
                                                 <td><?= $data['Picture'] ?></td>
-                                                <th>
-                                                    <a href="../../controllers/categorie-controller/c-eliminar.php?id=<?=$data['CategoryID']?>" class="users-table--delete" >Eliminar</a>            
-                                                </th>
+                                                <td>
+                                                    <form action="../../controllers/categorie-controller/c-eliminar.php" method="POST">
+                                                    <input type="hidden" name="categoryID" value="<?= $data['CategoryID']?>">
+                                                    <button type="submit" name="" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar esta categoria?')">
+                                                    <img src="../../svg/trash-2.svg"alt=""></button>
+                                                    </form>
+                                                </td>
                                                 <td>
                                                     <button typae="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit<?php echo $row['alu_id']; ?>" data-bs-whatever="@getbootstrap"><img src="../../svg/edit-2.svg" alt=""></button>  
                                                 </td>

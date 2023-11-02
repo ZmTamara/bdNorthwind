@@ -82,7 +82,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        include '../../controllers/order_controller.php';
+                                        include '../../controllers/order-controller/c-mostrar.php';
                                         while ($data = $result->fetch_assoc()) { ?>
                                             <tr>
                                                 <td><?= $data['OrderID'] ?></td>
